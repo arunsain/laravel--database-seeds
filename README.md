@@ -58,8 +58,6 @@
 
 		if you go to database/factories folder, you will find that Laravel comes with the factory class for User model. It will look like something below.
 
-
-
 		$factory->define(User::class, function (Faker $faker) {
 		    return [
 		        'name' => $faker->name,
@@ -73,7 +71,6 @@
 7. Create to factory for post table (factory of user is already comes with laravel)		
 
 		php artisan make:factory PostFactory
-
 
 		Note :-
 		When we create the model using php artisan make:model Post command, we can pass the -f flag to create the factory with the model. We used the -m flag to generate the migration in our above example, we can run php artisan make:model Post -m -f to generate model, migration and factory all together.
@@ -141,6 +138,25 @@
 				Seeding: UsersTableSeeder
 				Seeding: PostsTableSeeder
 				Database seeding completed successfully. 	
+
+14. Another  seeder is Added for Employee
+
+	$factory->define(Employee::class, function (Faker $faker) {
+
+	$gender = $faker->randomElement(['male','female']);
+
+	    return [
+	         'firstName' => $faker->name,
+	         'lastName' => $faker->name,
+	        'email' => $faker->unique()->safeEmail,
+	        'gender' => $gender,
+	        'dateOfBirth' => $faker->dateTimeBetween('1990-01-01', '2007-12-31')->format('Y-m-d'),
+	        'hiredOn' => $faker->dateTimeBetween('2016-01-01','2020-03-31')->format('Y-m-d'),
+	    ];
+	});
+
+
+
 
 
 
